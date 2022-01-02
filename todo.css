@@ -100,6 +100,8 @@ TODO 노트 앱
     // -[x] 상단 헤더바 형광색
     // -[x] 버튼 오른쪽 배치
 
+// -[x] note add 디자인
+    // -[x] 버튼 오른쪽 상단 배치
  */
 .note-container{
     position: absolute;
@@ -134,5 +136,19 @@ textarea{
 
 .hidden{
     display: none;
+
+}
+
+.add{
+    border: 0;
+    background: greenyellow;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    position: fixed;
+
+    top: 50px;
+    right: 50px;
+
 
 }

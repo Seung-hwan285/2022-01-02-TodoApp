@@ -18,8 +18,8 @@
 
 
 // TODO 메모장
-// -[x] edit 버튼 누르면 textarea 생성
-
+// -[x] editBtn 버튼 누르면 textarea 생성
+// -[] deleteBtn 버튼 누르면 삭제
 
 
 
