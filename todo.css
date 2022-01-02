@@ -30,9 +30,21 @@ form{
 
 #input{
     font-size: 2rem;
-
+    box-shadow: rgba(0,0,0,0.1);
 }
 
 #input::placeholder{
     color: #b5b5b5;
+}
+
+
+.todos{
+    background-color: white;
+    list-style-type: none;
+}
+.todos >li{
+
+    color: black;
+    padding: 1rem;
+    text-align: center;
 }
