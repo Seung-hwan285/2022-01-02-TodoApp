@@ -94,16 +94,20 @@ TODO 노트 앱
 
 // -[x] note-container 디자인
     // -[x] 배경 흰색
+    // -[x] todolist 겹치지않게 밑에 배치
 
 // -[x] note 디자인
     // -[x] 상단 헤더바 형광색
     // -[x] 버튼 오른쪽 배치
+
  */
 .note-container{
     position: absolute;
     width: 300px;
     height: 300px;
     background-color: white;
+    margin-top: 520px;
+    margin-left: 30px;
 }
 
 
@@ -126,4 +130,9 @@ textarea{
     outline: none;
     width: 100%;
     height: 100%;
+}
+
+.hidden{
+    display: none;
+
 }

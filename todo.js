@@ -18,15 +18,23 @@
 
 
 // TODO 메모장
-// -[] 버튼 누르면 textarea 생성
+// -[x] edit 버튼 누르면 textarea 생성
+
 
 
 
 const $=(s)=>document.querySelector(s);
 
+
 const form = $(".form-data");
 const input=$("#input");
 const todos=$(".todos");
+
+const note=$(".note");
+const editBtn=$(".note-edit");
+const deleteBtn=$(".note-delete");
+const main=$(".main");
+const text=$(".text");
 
 
 function todoCompleted(liEl) {
@@ -36,12 +44,12 @@ function todoCompleted(liEl) {
 
 }
 
-function listCount() {
+function todolistCount() {
     const listLen=$(".todos").querySelectorAll("li").length;
     $("#count").innerText=`총 ${listLen}개수`
 }
 
-function App() {
+function todoApp() {
 
 
     const addTodo=()=>{
@@ -65,7 +73,7 @@ function App() {
         todoCompleted(liEl);
 
         todos.append(liEl);
-        listCount();
+        todolistCount();
 
         input.value="";
     }
@@ -100,7 +108,23 @@ function App() {
 }
 
 
+function noteApp() {
+    editBtn.addEventListener("click",(e)=>{
+        main.classList.toggle('hidden');
+        text.classList.toggle('hidden');
+    });
 
 
-App();
+    text.addEventListener("input",(e)=>{
+        const {value}=e.target;
+
+        main.innerHTML=marked(value);
+    });
+
+
+}
+
+
+noteApp();
+todoApp();
 
