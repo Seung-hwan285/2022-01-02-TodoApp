@@ -17,6 +17,10 @@
     // -[x] li태그 개수 세기
 
 
+// TODO 메모장
+// -[] 버튼 누르면 textarea 생성
+
+
 
 const $=(s)=>document.querySelector(s);
 
@@ -36,8 +40,6 @@ function listCount() {
     const listLen=$(".todos").querySelectorAll("li").length;
     $("#count").innerText=`총 ${listLen}개수`
 }
-
-
 
 function App() {
 
@@ -96,6 +98,8 @@ function App() {
     });
 
 }
+
+
 
 
 App();
