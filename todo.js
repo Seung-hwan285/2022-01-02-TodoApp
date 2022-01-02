@@ -84,8 +84,13 @@ function App() {
     });
 
     $("#input").addEventListener("keypress",(e)=>{
+
+        if(e.key !=="Enter"){
+            return;;
+        }
         if(e.target.value ===""){
             alert("값을 입력해주세요");
+            return;
         }
         addTodo();
     });

@@ -23,7 +23,7 @@ h1{
     font-size: 50px;
     color: mediumslateblue;
     text-align: center;
-    min-height: 20vh;
+    min-height: 10vh;
 }
 
 
@@ -77,4 +77,9 @@ form{
 
 .delete-btn{
     float: right;
+    background: #b5b5b5;
+    border: 0;
+    border-radius: 5px;
+
+
 }
