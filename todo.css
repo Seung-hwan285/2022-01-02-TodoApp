@@ -59,11 +59,17 @@ form{
     padding: 10px;
     font-size: 1rem;
     text-align: left;
-    border-top: 1px solid rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 
 .completed{
     text-decoration: line-through;
     color: #b5b5b5;
+}
+#count{
+    display: flex;
+    background: white;
+    border-top: 1px solid rgba(0,0,0,0.5);
+    padding: 5px;
 }
