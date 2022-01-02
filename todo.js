@@ -19,6 +19,11 @@
 
 // TODO 메모장
 // -[x] editBtn 버튼 누르면 textarea 생성
+// -[] 노드추가 버튼 누르면 note 추가
+    // -[] innerHTML로 값 전달
+    // -[] div 추가하기
+
+
 // -[] deleteBtn 버튼 누르면 삭제
 
 
@@ -30,11 +35,7 @@ const form = $(".form-data");
 const input=$("#input");
 const todos=$(".todos");
 
-const note=$(".note");
-const editBtn=$(".note-edit");
-const deleteBtn=$(".note-delete");
-const main=$(".main");
-const text=$(".text");
+const add=$(".add");
 
 
 function todoCompleted(liEl) {
@@ -109,6 +110,29 @@ function todoApp() {
 
 
 function noteApp() {
+
+    var note =document.createElement("div");
+
+    note.className="note-container";
+
+
+    note.innerHTML=`<div class="note">
+
+    <button class="note-edit"><i class="fas fa-edit"></i></button>
+    <button class="note-delete"><i class="fas fa-trash-alt"></i></button>
+    </div>
+    <div class="main hidden"></div>
+    <textarea class="text"></textarea>
+    `;
+
+
+
+
+    const main=note.querySelector(".main");
+    const text=note.querySelector(".text");
+    const editBtn=note.querySelector(".note-edit");
+    const deleteBtn =note.querySelector(".note-delete");
+
     editBtn.addEventListener("click",(e)=>{
         main.classList.toggle('hidden');
         text.classList.toggle('hidden');
@@ -121,10 +145,22 @@ function noteApp() {
         main.innerHTML=marked(value);
     });
 
+    deleteBtn.addEventListener("click",()=>{
+        note.remove();
+    });
 
+    document.body.appendChild(note);
 }
 
+var noteCount=1;
 
-noteApp();
+add.addEventListener("click",()=> {
+    if (noteCount == 1) {
+        noteApp();
+    }
+   
+    noteCount++;
+});
+
 todoApp();
 
