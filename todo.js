@@ -5,6 +5,12 @@
     // -[x] 빈값 예외
     // -[x] li태그에 값 추가
 
+// TODO 할일 목록 변경
+// -[x] 할일 목록 클릭하면 선긋기
+
+// TODO 할일 개수
+
+
 
 
 
@@ -14,6 +20,14 @@ const form = $(".form-data");
 const input=$("#input");
 const todos=$(".todos");
 
+
+
+function todoCompleted(liEl) {
+    liEl.addEventListener("click",()=>{
+        liEl.classList.toggle("completed");
+    });
+
+}
 
 
 form.addEventListener("submit", (e) => {
@@ -29,6 +43,13 @@ form.addEventListener("submit", (e) => {
 
     liEl.innerHTML=input.value;
 
+
+    todoCompleted(liEl);
+
     todos.append(liEl);
+    input.value="";
+
 
 });
+
+
