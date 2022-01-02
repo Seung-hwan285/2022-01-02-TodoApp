@@ -1,0 +1,38 @@
+/*
+TODO 투두리스트
+
+// -[x] 글자 가운데 맞추기
+    // -[x] 입력칸 생성
+
+
+ */
+
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    font-size: 50px;
+    color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20vh;
+}
+
+
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#input{
+    font-size: 2rem;
+
+}
+
+#input::placeholder{
+    color: #b5b5b5;
+}
