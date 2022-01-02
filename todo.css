@@ -4,7 +4,7 @@ TODO 투두리스트
 // -[x] 글자 가운데 맞추기
     // -[x] 입력칸 생성
 
-// -[] ul 디자인
+// -[x] ul 디자인
     // -[x] border-top 선그어서 구별가능하게
     // -[x] li태그 클릭하면 (선긋기)
     // -[x] 글자색 변경
@@ -72,4 +72,8 @@ form{
     background: white;
     border-top: 1px solid rgba(0,0,0,0.5);
     padding: 5px;
+}
+
+.delete-btn{
+
 }

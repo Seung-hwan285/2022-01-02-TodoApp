@@ -5,18 +5,16 @@
     // -[x] 빈값 예외
     // -[x] li태그에 값 추가
 
-// TODO 할일 목록 변경
+// TODO 할일 목록 변경,삭제
 // -[x] 할일 목록 클릭하면 선긋기
-
+// -[] 삭제
+    // -[] 총개수 -1
+    // -[] 삭제 버튼누르면 안에 delete 버튼이 있는지 확인
 
 // TODO 할일 개수
 // -[x] 할일 총개수
     // -[x] count DOM 가져오기
     // -[x] li태그 개수 세기
-
-
-
-
 
 
 
@@ -40,33 +38,60 @@ function listCount() {
 }
 
 
-function deleteTodo() {
 
-}
+function App() {
 
-form.addEventListener("submit", (e) => {
 
-    e.preventDefault();
+    const addTodo=()=>{
 
-    if(input.value===""){
-        alert("값을 입력해주세요");
+    this.list = [];
+
+    const liEl = document.createElement("li");
+
+
+    this.list.push({name: input.value});
+
+        const template = this.list.map((item) => {
+            return `
+             ${item.name}
+            <button type="button" class="delete-btn">삭제</button>`;
+        });
+
+        liEl.innerHTML=template;
+
+
+        todoCompleted(liEl);
+
+        todos.append(liEl);
+        listCount();
+
+        input.value="";
     }
 
 
-    const liEl=document.createElement("li");
 
-    liEl.innerHTML=input.value;
+    $(".todos").addEventListener("click",(e)=>{
+        if(e.target.classList.contains("delete-btn")) {
+            if (confirm("삭제?")) {
+                e.target.closest("li").remove();
+            }
+            listCount();
+        }
+    });
+
+    $(".form-data").addEventListener("submit",(e)=>{
+        e.preventDefault();
+    });
+
+    $("#input").addEventListener("keypress",(e)=>{
+        if(e.target.value ===""){
+            alert("값을 입력해주세요");
+        }
+        addTodo();
+    });
+
+}
 
 
-    todoCompleted(liEl);
-
-    todos.append(liEl);
-
-    input.value="";
-
-    listCount();
-
-
-});
-
+App();
 
