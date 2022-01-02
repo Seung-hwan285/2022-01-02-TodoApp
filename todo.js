@@ -46,7 +46,7 @@ function todoCompleted(liEl) {
 
 function todolistCount() {
     const listLen=$(".todos").querySelectorAll("li").length;
-    $("#count").innerText=`총 ${listLen}개수`
+    $("#count").innerText=`총 ${listLen}개`
 }
 
 function todoApp() {
@@ -82,10 +82,10 @@ function todoApp() {
 
     $(".todos").addEventListener("click",(e)=>{
         if(e.target.classList.contains("delete-btn")) {
-            if (confirm("삭제?")) {
+            if (confirm("일 완료 했습니까?")) {
                 e.target.closest("li").remove();
             }
-            listCount();
+            todolistCount();
         }
     });
 

@@ -45,6 +45,8 @@ form{
     display: block;
     width: 100%;
     padding: 15px;
+    outline: none;
+    box-shadow:  0 0 10px 5px rgba(0,0,0,0.1);
 
 }
 
@@ -58,6 +60,7 @@ form{
     padding: 0;
     margin: 0;
     border-radius: 5px;
+    box-shadow:  0 0 10px 5px rgba(0,0,0,0.1);
 }
 
 .todos > li{
@@ -76,7 +79,7 @@ form{
 #count{
     display: flex;
     background: white;
-    border-top: 1px solid rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(0,0,0,0.1);
     padding: 5px;
 }
 
@@ -146,9 +149,6 @@ textarea{
     padding: 5px;
     cursor: pointer;
     position: fixed;
-
     top: 50px;
     right: 50px;
-
-
 }
