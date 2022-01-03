@@ -1,0 +1,70 @@
+
+
+/*
+TODO 노트 앱
+
+// -[x] note-container 디자인
+    // -[x] 배경 흰색
+    // -[x] todolist 겹치지않게 밑에 배치
+
+// -[x] note 디자인
+    // -[x] 상단 헤더바 형광색
+    // -[x] 버튼 오른쪽 배치
+
+// -[x] note add 디자인
+    // -[x] 버튼 오른쪽 상단 배치
+ */
+
+
+
+.note-container{
+    margin-top: 30px;
+    width: 300px;
+    min-height: 300px;
+    background-color: white;
+
+    margin-left: 100px;
+}
+
+
+.note{
+
+    background: greenyellow;
+    display: flex;
+    justify-content: right;
+    padding: 5px;
+
+
+
+}
+
+.note-edit{
+    margin-right: 5px;
+    cursor: pointer;
+}
+.note-delete{
+    cursor: pointer;
+}
+
+textarea{
+    outline: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+}
+
+.hidden{
+    display: none;
+
+}
+
+.add{
+    border: 0;
+    background: greenyellow;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+}
