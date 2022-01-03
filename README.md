@@ -102,4 +102,33 @@ function todoCompleted(liEl) {
 ```
 
 
-### 
+### Note
+
+### 수정 버튼
+수정버튼을 누르면 글을 작성할 수 있게 기존 main ,textarea => hidden으로(새로운 페이지) 바꿔줍니다.
+
+```javascript
+  editBtn.addEventListener("click",(e)=>{
+        main.classList.toggle('hidden');
+        text.classList.toggle('hidden');
+    });
+```
+
+### 글 작성 
+노트에 글이 입력이 되면 마크언어로 변환을 시켜줍니다.
+```javascript
+text.addEventListener("input",(e)=>{
+        console.log(e.target);
+        const {value}=e.target;
+
+        main.innerHTML=marked(value);
+    });
+```
+
+### 삭제 버튼
+삭제버튼을 누르면 글이 삭제가 됩니다.
+```javascript
+  deleteBtn.addEventListener("click",()=>{
+        note.remove();
+    });
+```
