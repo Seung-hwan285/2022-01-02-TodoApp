@@ -13,7 +13,7 @@ https://awesome-joliot-e3a996.netlify.app
 
 ## 기능
 
-### Todo list
+## 📃 Todo list
 ### Todo 추가
 keypress를 통해 입력한 값 받고 빈값이 아니면 추가를 합니다.
 ```javascript
@@ -102,7 +102,7 @@ function todoCompleted(liEl) {
 ```
 
 
-### Note
+## 📃 Note
 
 ### 수정 버튼
 수정버튼을 누르면 글을 작성할 수 있게 기존 main ,textarea => hidden으로(새로운 페이지) 바꿔줍니다.
