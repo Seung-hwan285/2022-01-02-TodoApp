@@ -49,6 +49,12 @@ function todolistCount() {
     $("#count").innerText=`총 ${listLen}개`
 }
 
+function deletTodo(e) {
+    const del=e.target.parentElement;
+    del.remove();
+    todolistCount();
+}
+
 
 function saveToDos() {
     localStorage.setItem("todos",JSON.stringify(list));
@@ -57,8 +63,14 @@ function saveToDos() {
 function handToDoSubmit(e) {
     const newTodo=input.value;
     input.value="";
-    list.push(newTodo);
-    paintTodo(newTodo);
+    const newTodoObj={
+        text:newTodo,
+        id:Date.now(),
+    };
+
+    list.push(newTodoObj);
+
+    paintTodo(newTodoObj);
     saveToDos();
 }
 
@@ -66,11 +78,15 @@ function handToDoSubmit(e) {
 function paintTodo(newTodo) {
     const li = document.createElement("li");
 
+    li.id=newTodo.id;
+    console.log(li.id);
+    const span = document.createElement("span");
 
-    li.innerHTML=newTodo;
+    span.innerText=newTodo.text;
+    console.log(span);
 
     const button=document.createElement("button");
-    button.innerHTML="삭제";
+    button.innerText="삭제";
     button.className="delete-btn";
 
 
@@ -82,11 +98,34 @@ function paintTodo(newTodo) {
     // });
     //
     // li.innerHTML=template;
-    todoCompleted(li);
-    todos.append(li);
-    li.append(button);
 
+
+
+    li.appendChild(span);
+    li.appendChild(button);
+
+    todos.append(li);
     todolistCount();
+
+    todoCompleted(span);
+
+
+    // $(".delete-btn").addEventListener("click",(e)=>{
+    //     if(confirm("삭제하시겠습니까?")){
+    //         e.target.closest("li").remove();
+    //     }
+    //     todolistCount();
+    // });
+
+
+    // $(".delete-btn").addEventListener("click",(e)=>{
+    //     if(e.target.classList.contains("delete-btn")) {
+    //         if (confirm("삭제하시겠습니까?")) {
+    //             e.target.closest("li").remove();
+    //         }
+    //         todolistCount();
+    //     }
+    // });
 }
 
 
@@ -96,35 +135,15 @@ function todoApp() {
 
 
 
-    $("delete-btn").addEventListener("click",(e)=>{
-        if(e.target.classList.contains("delete-btn")) {
-            if (confirm("삭제하시겠습니까?")) {
-                e.target.closest("li").remove();
-            }
-            todolistCount();
-        }
-    });
-
     $(".form-data").addEventListener("submit",(e)=>{
         e.preventDefault();
         handToDoSubmit();
     });
 
-    $("#input").addEventListener("keypress",(e)=>{
 
-        if(e.key !=="Enter"){
-            return;
-        }
-        if(e.target.value ===""){
-            alert("값을 입력해주세요");
-            return;
-        }
 
-    });
 
 }
-
-
 
 
 todoApp();

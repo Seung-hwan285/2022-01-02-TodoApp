@@ -57,5 +57,4 @@ add.addEventListener("click",()=> {
 
     noteApp();
 
-
 });
