@@ -33,7 +33,6 @@ const form = $(".form-data");
 const input=$("#input");
 const todos=$(".todos");
 
-const add=$(".add");
 
 const list = [];
 
@@ -60,16 +59,22 @@ function saveToDos() {
     localStorage.setItem("todos",JSON.stringify(list));
 }
 
-function handToDoSubmit(e) {
+function handToDoSubmit() {
     const newTodo=input.value;
+
+    if(newTodo ===""){
+        alert("빈값입니다.");
+        return;
+    }
+
     input.value="";
+
     const newTodoObj={
         text:newTodo,
         id:Date.now(),
     };
 
     list.push(newTodoObj);
-
     paintTodo(newTodoObj);
     saveToDos();
 }
@@ -129,18 +134,14 @@ function paintTodo(newTodo) {
 }
 
 
-//삭제 다시 구현하기
 
 function todoApp() {
-
 
 
     $(".form-data").addEventListener("submit",(e)=>{
         e.preventDefault();
         handToDoSubmit();
     });
-
-
 
 
 }

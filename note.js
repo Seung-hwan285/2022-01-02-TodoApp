@@ -8,6 +8,7 @@
 // -[x] deleteBtn 버튼 누르면 삭제
 
 
+const add=$(".add");
 function noteApp() {
 
     var note =document.createElement("div");
