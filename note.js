@@ -1,8 +1,8 @@
 // TODO 메모장
 // -[x] editBtn 버튼 누르면 textarea 생성
-// -[] 노드추가 버튼 누르면 note 추가
-// -[] innerHTML로 값 전달
-// -[] div 추가하기
+// -[x] 노드추가 버튼 누르면 note 추가
+// -[x] innerHTML로 값 전달
+// -[x] div 추가하기
 
 
 // -[x] deleteBtn 버튼 누르면 삭제

@@ -17,6 +17,11 @@
     // -[x] li태그 개수 세기
 
 
+// TODO localStroage로 변환
+// localStore 만들고 함수 안에서 관리
+    // -[x] set stringfy => 문자열 변환
+    // -[] get parse => json 객체 변환
+
 
 
 
@@ -30,6 +35,7 @@ const todos=$(".todos");
 
 const add=$(".add");
 
+const list = [];
 
 function todoCompleted(liEl) {
     liEl.addEventListener("click",()=>{
@@ -43,40 +49,56 @@ function todolistCount() {
     $("#count").innerText=`총 ${listLen}개`
 }
 
+
+function saveToDos() {
+    localStorage.setItem("todos",JSON.stringify(list));
+}
+
+function handToDoSubmit(e) {
+    const newTodo=input.value;
+    input.value="";
+    list.push(newTodo);
+    paintTodo(newTodo);
+    saveToDos();
+}
+
+
+function paintTodo(newTodo) {
+    const li = document.createElement("li");
+
+
+    li.innerHTML=newTodo;
+
+    const button=document.createElement("button");
+    button.innerHTML="삭제";
+    button.className="delete-btn";
+
+
+    //
+    // const template = list.map((item) => {
+    //     return `
+    //          <span>${item}</span>
+    //         <button type="button" class="delete-btn">삭제</button>`;
+    // });
+    //
+    // li.innerHTML=template;
+    todoCompleted(li);
+    todos.append(li);
+    li.append(button);
+
+    todolistCount();
+}
+
+
+//삭제 다시 구현하기
+
 function todoApp() {
 
 
-    const addTodo=()=>{
 
-    this.list = [];
-
-    const liEl = document.createElement("li");
-
-
-    this.list.push({name: input.value});
-
-        const template = this.list.map((item) => {
-            return `
-             ${item.name}
-            <button type="button" class="delete-btn">삭제</button>`;
-        });
-
-        liEl.innerHTML=template;
-
-
-        todoCompleted(liEl);
-
-        todos.append(liEl);
-        todolistCount();
-
-        input.value="";
-    }
-
-
-
-    $(".todos").addEventListener("click",(e)=>{
+    $("delete-btn").addEventListener("click",(e)=>{
         if(e.target.classList.contains("delete-btn")) {
-            if (confirm("일 완료 했습니까?")) {
+            if (confirm("삭제하시겠습니까?")) {
                 e.target.closest("li").remove();
             }
             todolistCount();
@@ -85,18 +107,19 @@ function todoApp() {
 
     $(".form-data").addEventListener("submit",(e)=>{
         e.preventDefault();
+        handToDoSubmit();
     });
 
     $("#input").addEventListener("keypress",(e)=>{
 
         if(e.key !=="Enter"){
-            return;;
+            return;
         }
         if(e.target.value ===""){
             alert("값을 입력해주세요");
             return;
         }
-        addTodo();
+
     });
 
 }
@@ -105,4 +128,3 @@ function todoApp() {
 
 
 todoApp();
-
