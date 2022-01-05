@@ -49,8 +49,10 @@ function todolistCount() {
 }
 
 function deletTodo(e) {
-    const del=e.target.parentElement;
+    const del=e.target.closest("li");
     del.remove();
+    console.log(del.id);
+
     todolistCount();
 }
 
@@ -59,40 +61,20 @@ function saveToDos() {
     localStorage.setItem("todos",JSON.stringify(list));
 }
 
-function handToDoSubmit() {
-    const newTodo=input.value;
-
-    if(newTodo ===""){
-        alert("빈값입니다.");
-        return;
-    }
-
-    input.value="";
-
-    const newTodoObj={
-        text:newTodo,
-        id:Date.now(),
-    };
-
-    list.push(newTodoObj);
-    paintTodo(newTodoObj);
-    saveToDos();
-}
-
-
 function paintTodo(newTodo) {
+
     const li = document.createElement("li");
 
-    li.id=newTodo.id;
-    console.log(li.id);
     const span = document.createElement("span");
 
-    span.innerText=newTodo.text;
+    span.innerText=newTodo;
     console.log(span);
 
     const button=document.createElement("button");
     button.innerText="삭제";
     button.className="delete-btn";
+
+
 
 
     //
@@ -104,14 +86,12 @@ function paintTodo(newTodo) {
     //
     // li.innerHTML=template;
 
-
-
     li.appendChild(span);
     li.appendChild(button);
 
     todos.append(li);
-    todolistCount();
 
+    todolistCount();
     todoCompleted(span);
 
 
@@ -131,20 +111,22 @@ function paintTodo(newTodo) {
     //         todolistCount();
     //     }
     // });
-}
-
-
-
-function todoApp() {
-
-
-    $(".form-data").addEventListener("submit",(e)=>{
-        e.preventDefault();
-        handToDoSubmit();
-    });
-
 
 }
 
+function handToDoSubmit(e) {
 
-todoApp();
+    e.preventDefault();
+    const newTodo=input.value;
+    console.log(newTodo);
+
+    input.value="";
+
+    list.push(newTodo);
+    paintTodo(newTodo);
+    saveToDos();
+
+}
+
+
+form.addEventListener("submit",handToDoSubmit);
