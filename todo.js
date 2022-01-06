@@ -48,69 +48,52 @@ function todolistCount() {
     $("#count").innerText=`총 ${listLen}개`
 }
 
-function deletTodo(e) {
+
+function saveToDos() {
+    localStorage.setItem("todos",JSON.stringify(list));
+}
+const deletTodo=(e)=> {
     const del=e.target.closest("li");
+    console.log(del);
     del.remove();
-    console.log(del.id);
 
     todolistCount();
 }
 
 
-function saveToDos() {
-    localStorage.setItem("todos",JSON.stringify(list));
-}
-
 function paintTodo(newTodo) {
+
+
+
+
 
     const li = document.createElement("li");
 
     const span = document.createElement("span");
-
-    span.innerText=newTodo;
-    console.log(span);
-
     const button=document.createElement("button");
     button.innerText="삭제";
     button.className="delete-btn";
 
 
+    span.innerText=newTodo;
+    console.log(span);
 
 
-    //
-    // const template = list.map((item) => {
-    //     return `
-    //          <span>${item}</span>
-    //         <button type="button" class="delete-btn">삭제</button>`;
-    // });
-    //
-    // li.innerHTML=template;
 
     li.appendChild(span);
     li.appendChild(button);
 
-    todos.append(li);
+    todos.appendChild(li);
 
     todolistCount();
     todoCompleted(span);
 
+    $(".todos").addEventListener("click",(e)=>{
+        if(e.target.classList.contains("delete-btn")){
+            deletTodo(e);
+        }
+    })
 
-    // $(".delete-btn").addEventListener("click",(e)=>{
-    //     if(confirm("삭제하시겠습니까?")){
-    //         e.target.closest("li").remove();
-    //     }
-    //     todolistCount();
-    // });
-
-
-    // $(".delete-btn").addEventListener("click",(e)=>{
-    //     if(e.target.classList.contains("delete-btn")) {
-    //         if (confirm("삭제하시겠습니까?")) {
-    //             e.target.closest("li").remove();
-    //         }
-    //         todolistCount();
-    //     }
-    // });
 
 }
 
@@ -125,6 +108,7 @@ function handToDoSubmit(e) {
     list.push(newTodo);
     paintTodo(newTodo);
     saveToDos();
+
 
 }
 
