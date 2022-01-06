@@ -34,7 +34,7 @@ const input=$("#input");
 const todos=$(".todos");
 
 
-const list = [];
+var list = [];
 
 function todoCompleted(liEl) {
     liEl.addEventListener("click",()=>{
@@ -63,6 +63,9 @@ function  deletTodo(e){
     del.remove();
     todolistCount();
 
+    list = list.filter((item)=> item.id !==parseInt(del.id));
+
+    setToDos();
 }
 
 
@@ -70,14 +73,16 @@ function paintTodo(newTodo) {
 
 
     const li = document.createElement("li");
+    li.id=newTodo.id;
 
     const span = document.createElement("span");
+
     const button=document.createElement("button");
     button.innerText="삭제";
     button.className="delete-btn";
 
 
-    span.innerText=newTodo;
+    span.innerText=newTodo.text;
 
 
 
@@ -99,16 +104,22 @@ function paintTodo(newTodo) {
 
 }
 
-function handToDoSubmit(e) {
 
+function handToDoSubmit(e) {
+    var num=1;
     e.preventDefault();
     const newTodo=input.value;
 
 
     input.value="";
+    const newTodoObj ={
+        text : newTodo,
+        id : Date.now(),
+    };
 
-    list.push(newTodo);
-    paintTodo(newTodo);
+
+    list.push(newTodoObj);
+    paintTodo(newTodoObj);
     setToDos();
 
 
@@ -126,7 +137,7 @@ if(getToDos !== null){
 
     // 요소 하나하나 화면에 뿌려주기기
     parsedToDos.map(item=>{
-        console.log(item);
+
         paintTodo(item);
     });
 
