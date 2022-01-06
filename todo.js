@@ -20,8 +20,8 @@
 // TODO localStroage로 변환
 // localStore 만들고 함수 안에서 관리
     // -[x] set stringfy => 문자열 변환
-    // -[] get parse => json 객체 변환
-
+    // -[x] get parse => json 객체 변환
+    // -[x] delete 삭제
 
 
 
@@ -63,6 +63,8 @@ function  deletTodo(e){
     del.remove();
     todolistCount();
 
+    // 로컬스토리지 id와 삭제되는 id가 다른것만 배열에 저장
+    // 즉 같은 id는 삭제
     list = list.filter((item)=> item.id !==parseInt(del.id));
 
     setToDos();
@@ -106,7 +108,6 @@ function paintTodo(newTodo) {
 
 
 function handToDoSubmit(e) {
-    var num=1;
     e.preventDefault();
     const newTodo=input.value;
 
