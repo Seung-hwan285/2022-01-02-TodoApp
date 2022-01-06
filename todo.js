@@ -49,22 +49,24 @@ function todolistCount() {
 }
 
 
-function saveToDos() {
+const setToDos=()=>{
     localStorage.setItem("todos",JSON.stringify(list));
 }
-const deletTodo=(e)=> {
-    const del=e.target.closest("li");
-    console.log(del);
-    del.remove();
 
+
+
+
+function  deletTodo(e){
+
+    const del=e.target.closest("li");
+
+    del.remove();
     todolistCount();
+
 }
 
 
 function paintTodo(newTodo) {
-
-
-
 
 
     const li = document.createElement("li");
@@ -76,7 +78,6 @@ function paintTodo(newTodo) {
 
 
     span.innerText=newTodo;
-    console.log(span);
 
 
 
@@ -90,6 +91,7 @@ function paintTodo(newTodo) {
 
     $(".todos").addEventListener("click",(e)=>{
         if(e.target.classList.contains("delete-btn")){
+
             deletTodo(e);
         }
     })
@@ -101,16 +103,32 @@ function handToDoSubmit(e) {
 
     e.preventDefault();
     const newTodo=input.value;
-    console.log(newTodo);
+
 
     input.value="";
 
     list.push(newTodo);
     paintTodo(newTodo);
-    saveToDos();
+    setToDos();
 
 
 }
 
 
 form.addEventListener("submit",handToDoSubmit);
+const getToDos= localStorage.getItem("todos");
+
+if(getToDos !== null){
+
+    // 로컬스토리지 문자열 값 -> 배열로 변환
+    const parsedToDos = JSON.parse(getToDos);
+
+
+    // 요소 하나하나 화면에 뿌려주기기
+    parsedToDos.map(item=>{
+        console.log(item);
+        paintTodo(item);
+    });
+
+
+}
