@@ -36,12 +36,7 @@ const todos=$(".todos");
 
 var list = [];
 
-function todoCompleted(liEl) {
-    liEl.addEventListener("click",()=>{
-        liEl.classList.toggle("completed");
-    });
 
-}
 
 function todolistCount() {
     const listLen=$(".todos").querySelectorAll("li").length;
@@ -82,26 +77,57 @@ function paintTodo(newTodo) {
     const button=document.createElement("button");
     button.innerText="삭제";
     button.className="delete-btn";
+    span.className="span-btn"
+    console.log(span);
+
+    if(newTodo.is_done===true){
+
+        span.innerText=span.className="completed";
+        li.appendChild(span);
+    }
+    else{
+
+        span.innerText=newTodo.text;
+        li.appendChild(span);
+    }
 
 
-    span.innerText=newTodo.text;
-
-
-
-    li.appendChild(span);
     li.appendChild(button);
 
     todos.appendChild(li);
 
     todolistCount();
-    todoCompleted(span);
+
+
+    span.addEventListener("click",(e)=>{
+        const tar = e.target.parentElement;
+
+        for(const i in list){
+            if(list[i].id ===parseInt(tar.id)){
+                if(list[i].is_done===true){
+                    e.target.classList.remove("completed");
+                    list[i].is_done=false;
+
+
+                }
+                else{
+                    e.target.classList.add("completed");
+                    list[i].is_done=true;
+
+                }
+            }
+        }
+
+        setToDos();
+    });
 
     $(".todos").addEventListener("click",(e)=>{
         if(e.target.classList.contains("delete-btn")){
 
             deletTodo(e);
         }
-    })
+    });
+
 
 
 }
@@ -116,6 +142,7 @@ function handToDoSubmit(e) {
     const newTodoObj ={
         text : newTodo,
         id : Date.now(),
+        is_done : false,
     };
 
 
