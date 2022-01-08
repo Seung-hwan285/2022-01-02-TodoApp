@@ -9,9 +9,15 @@
 
 
 const add=$(".add");
-function noteApp() {
 
-    var note =document.createElement("div");
+
+function saveMessage(){
+
+}
+
+let note =document.createElement("div");
+
+function noteApp() {
 
     note.className="note-container";
 
@@ -27,7 +33,6 @@ function noteApp() {
 
 
 
-
     const main=note.querySelector(".main");
     const text=note.querySelector(".text");
     const editBtn=note.querySelector(".note-edit");
@@ -40,19 +45,32 @@ function noteApp() {
 
 
     text.addEventListener("input",(e)=>{
-        console.log(e.target);
+
         const {value}=e.target;
 
         main.innerHTML=marked(value);
+
+
+
     });
+
+    localStorage.setItem("notes",JSON.stringify(note));
+
+
+
 
     deleteBtn.addEventListener("click",()=>{
         note.remove();
     });
 
     document.body.appendChild(note);
+
 }
 
+
+function saveInStorage() {
+    localStorage.setItem("noteData",JSON.stringify(note));
+}
 
 add.addEventListener("click",()=> {
 

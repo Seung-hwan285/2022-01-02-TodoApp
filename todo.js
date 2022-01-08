@@ -34,7 +34,7 @@ const input=$("#input");
 const todos=$(".todos");
 
 
-var list = [];
+let list = [];
 
 
 
