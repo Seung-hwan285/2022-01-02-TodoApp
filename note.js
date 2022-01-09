@@ -8,21 +8,26 @@
 // -[x] deleteBtn 버튼 누르면 삭제
 
 
+
+// -[x] 로컬스토리지에 text값 저장하기
+
 const add=$(".add");
 
 
-function saveMessage(){
-
-}
 
 let note =document.createElement("div");
 
+function getStorage() {
+
+    $(".text").value = localStorage.getItem("text");
+
+}
+
 function noteApp() {
 
-    note.className="note-container";
+    note.className = "note-container";
 
-
-    note.innerHTML=`<div class="note">
+    note.innerHTML = `<div class="note">
 
     <button class="note-edit"><i class="fas fa-edit"></i></button>
     <button class="note-delete"><i class="fas fa-trash-alt"></i></button>
@@ -32,45 +37,44 @@ function noteApp() {
     `;
 
 
+    const main = note.querySelector(".main");
+    const text = note.querySelector(".text");
+    const editBtn = note.querySelector(".note-edit");
+    const deleteBtn = note.querySelector(".note-delete");
 
-    const main=note.querySelector(".main");
-    const text=note.querySelector(".text");
-    const editBtn=note.querySelector(".note-edit");
-    const deleteBtn =note.querySelector(".note-delete");
-
-    editBtn.addEventListener("click",(e)=>{
+    editBtn.addEventListener("click", (e) => {
         main.classList.toggle('hidden');
         text.classList.toggle('hidden');
-    });
 
-
-    text.addEventListener("input",(e)=>{
-
-        const {value}=e.target;
-
-        main.innerHTML=marked(value);
-
-
+        const inputText=text.value;
+        localStorage.setItem("text",JSON.stringify(inputText));
 
     });
 
-    localStorage.setItem("notes",JSON.stringify(note));
+    text.addEventListener("input", (e) => {
 
+        const {value} = e.target;
 
+        main.innerHTML = marked(value);
 
+    });
 
-    deleteBtn.addEventListener("click",()=>{
+    deleteBtn.addEventListener("click", () => {
         note.remove();
+        localStorage.setItem("text","");
     });
+
 
     document.body.appendChild(note);
+    // 로컬리스트 추가중...
+    // 1. 로컬리스트에 추가 : text
+
+
+    getStorage();
 
 }
 
 
-function saveInStorage() {
-    localStorage.setItem("noteData",JSON.stringify(note));
-}
 
 add.addEventListener("click",()=> {
 
