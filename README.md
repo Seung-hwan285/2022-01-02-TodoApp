@@ -138,7 +138,9 @@ text.addEventListener("input",(e)=>{
 실제 서비스처럼 구현해보기 위해서 즉 실제로 사용을 하기 위해서 로컬스토리지에 저장하고 관리를 하게 리펙토링을 진행하였습니다.
 
 
-### Note 
+
+### Refactor Code
+#### Note 
 ```javascript
 
 function getStorage() {
@@ -156,4 +158,29 @@ editBtn.addEventListener("click", (e) => {
 
  });
 
+```
+
+### Todo
+```javascript
+
+const setToDos=()=>{
+    localStorage.setItem("todos",JSON.stringify(list));
+}
+
+const getToDos= localStorage.getItem("todos");
+
+if(getToDos !== null){
+
+    // 로컬스토리지 문자열 값 -> 배열로 변환
+    const parsedToDos = JSON.parse(getToDos);
+    // 남은 데이터 덮어주기 안그럼 새로고침했을때 값 초기화되는현상 나옴
+    list=parsedToDos;
+    // 요소 하나하나 화면에 뿌려주기기
+    parsedToDos.map(item=>{
+
+        paintTodo(item);
+    });
+
+
+}
 ```
