@@ -134,6 +134,26 @@ text.addEventListener("input",(e)=>{
 ```
 
 
-## 📃 3.Note & TODO 로컬스토리지로 리펙토링
+## 📃 3.Note & Todo 로컬스토리지로 리펙토링
 실제 서비스처럼 구현해보기 위해서 즉 실제로 사용을 하기 위해서 로컬스토리지에 저장하고 관리를 하게 리펙토링을 진행하였습니다.
 
+
+### Note 
+```javascript
+
+function getStorage() {
+
+    $(".text").value = localStorage.getItem("text");
+ }
+ 
+ 
+editBtn.addEventListener("click", (e) => {
+    main.classList.toggle('hidden');
+    text.classList.toggle('hidden');
+
+    const inputText=text.value;
+    localStorage.setItem("text",JSON.stringify(inputText));
+
+ });
+
+```
