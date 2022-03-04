@@ -11,17 +11,15 @@
 
 // -[x] 로컬스토리지에 text값 저장하기
 
+import {$} from "../utils/querySelector.js";
+
 const add=$(".add");
 
 
 
 let note =document.createElement("div");
 
-function getStorage() {
 
-    $(".text").value = localStorage.getItem("text");
-
-}
 
 function noteApp() {
 
